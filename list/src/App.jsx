@@ -2,9 +2,9 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+const initialItems = [{id:1,description:"Passports",quanity:5,packed:false},{id:2,description:"PJs",quanity:12,packed:false}]
 
 function App() {
-const initialItems = [{id:1,description:"Passports",quanity:2,packed:false},{id:2,description:"PJs",quanity:12,packed:false}]
   return (
     <>
       <div className='app'>
@@ -27,7 +27,23 @@ function Form(){
   )
 }
 function PackingList(){
-  return <div className="list">List</div>
+  return <div className="list">List
+  <ul>
+  {initialItems.map(item => (
+       <Item item={item} key={item.id}/>
+    ))}
+  </ul>
+  </div>
+}
+function Item({item}){
+  return(
+    <li>
+    <span style = {initialItems.packed ? {style:"line-through"}:{}}>
+    {item.quanity}
+    {item.description}
+    </span>
+    </li>
+  )
 }
 function Stats(){
   return (
