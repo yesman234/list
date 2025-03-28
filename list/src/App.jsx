@@ -1,8 +1,17 @@
 import { useState} from 'react'
 import './App.css'
-const initialItems = [{id:1,description:"Passports",quanity:5,packed:false},{id:4,description:"Currency",quanity:7,packed:true},{id:2,description:"PJs",quanity:12,packed:false}]
+const initialItems = [
+  {id:1,description:"Passports",quanity:5,packed:false},
+  {id:4,description:"Currency",quanity:7,packed:true},
+  {id:2,description:"PJs",quanity:12,packed:false}
+]
 
 function App() {
+  //here
+  const [items, setItems] = useState([]);
+  function handleAddItems(item){
+    setItems((items)=>[...items,item])
+  }
   return (
     <>
       <div className='app'>
@@ -23,7 +32,7 @@ function Form(){
   function handleSubmit(e){
      e.preventDefault();
      const newItem = {description,quanity,packed:false,id:Date.now()}
-     console.log(newItem)
+     console.log(newItem,'<<newItem')
   }
   return (
     <form className="add-form" onSubmit={handleSubmit}>
