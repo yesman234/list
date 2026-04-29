@@ -1,20 +1,20 @@
 import { useState} from 'react'
 import './App.css'
 const initialItems = [
-  {id:1,description:"Passports",quanity:5,packed:false},
-  {id:4,description:"Currency",quanity:7,packed:true},
-  {id:2,description:"PJs",quanity:12,packed:false}
+  {id:1,description:" Passports",quanity:5,packed:false},
+  {id:2,description:" Currency",quanity:7,packed:true},
+  {id:3,description:"  PJs",quanity:12,packed:false}
 ]
 
 function App() {
   //here
   const [items, setItems] = useState([...initialItems]);
 function handleAddItems(item){
-    setItems((items)=>[...items,item])
+    setItems(items=>[...items,item])
   }
 function handleToggleItem(id){
   //not setting item state 
-  setItems(items)
+  //setItems((items)
     items.map((item)=>{
     
       item.id === id ? {...item, packed:!item.packed} : item;
