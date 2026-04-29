@@ -23,7 +23,7 @@ function handleToggleItem(id){
 
 function handleDeleteItem(id){ 
   console.log(`${id}`)
-  setItems((...items)=>items.filter((item)=>item.id !== item.id))
+  setItems((items)=>items.filter((item)=>item.id !== item.id))
 }
 
   return (
@@ -47,7 +47,7 @@ function Form({onAddItems}){
      e.preventDefault();
      if(!description)return;
      const newItem = {description,quanity,packed:false,id:Date.now()}
-     console.log(newItem,'<<newItem')
+     console.log(newItem,'<<newItem',"#handleSubmit")
      onAddItems(newItem);
      setDescription("")
      setQuanity(1)
@@ -84,12 +84,12 @@ function PackingList({items,onDeleteItem, onToggleItem}){
 function Item({item, onDeleteItem, onToggleItem}){
   return(
     <li>
-      <input type='checkbox' value={item.packed} onChange={((id)=>onToggleItem(item.id))}/>
+      <input type='checkbox' value={item.packed} onChange={onToggleItem(item.id !== item.id)}/>
     <span style = {initialItems.packed ? {style:"line-through"}:{}}>
     {item.quanity}
     {item.description}
     </span>
-    <button onClick={() => onDeleteItem(item.id !== item.id)}>❌</button>
+    <button onClick={()=>onDeleteItem(item.id)}>❌</button>
     </li>
   )
 }
