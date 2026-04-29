@@ -23,7 +23,7 @@ function handleToggleItem(id){
 
 function handleDeleteItem(id){ 
   console.log(`${id}`)
-  setItems((items)=>items.filter((item)=>item.id !== item.id))
+  setItems(items=>items.filter((item)=>item.id !== id))
 }
 
   return (
@@ -84,7 +84,7 @@ function PackingList({items,onDeleteItem, onToggleItem}){
 function Item({item, onDeleteItem, onToggleItem}){
   return(
     <li>
-      <input type='checkbox' value={item.packed} onChange={onToggleItem(item.id !== item.id)}/>
+      <input type='checkbox' value={item.packed} onChange={onToggleItem(item.id)}/>
     <span style = {initialItems.packed ? {style:"line-through"}:{}}>
     {item.quanity}
     {item.description}
