@@ -9,14 +9,14 @@ const initialItems = [
 function App() {
   //here
   const [items, setItems] = useState([...initialItems]);
-function handleAddItems(item){
+  let len = items.length;
+  function handleAddItems(item){
     setItems(items=>[...items,item])
   }
 function handleToggleItem(id){
   //not setting item state 
   //setItems((items)
     items.map((item)=>{
-    
       item.id === id ? {...item, packed:!item.packed} : item;
     })
 }
@@ -32,7 +32,7 @@ function handleDeleteItem(id){
     <Logo />
     <Form onAddItems = {handleAddItems} />
     <PackingList items={items} onDeleteItem={handleDeleteItem} onToggleItem={handleToggleItem}/>
-    <Stats />
+    <Stats items={items}/>
        </div>
     </>
   )
@@ -93,10 +93,13 @@ function Item({item, onDeleteItem, onToggleItem}){
     </li>
   )
 }
-function Stats(){
+function Stats({items}){
+  const len = items.length;
+  const filtered = items.filter((a)=>a.packed.length);
+  let perc = Math.round(filtered/len*100)
   return (
     <footer className="stats">
-      <em>Your have x items packed in your bag and ypu have x to go.</em>
+      <em>Your have {len} items packed in your bag and packed {filtered} have {perc} to go.</em>
     </footer>
   )
 }
