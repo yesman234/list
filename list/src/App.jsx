@@ -1,14 +1,10 @@
 import { useState} from 'react'
 import './App.css'
-const initialItems = [
-  {id:1,description:" Passports",quanity:5,packed:false},
-  {id:2,description:" Currency",quanity:7,packed:true},
-  {id:3,description:"  PJs",quanity:12,packed:false}
-]
+
 
 function App() {
   //here
-  const [items, setItems] = useState([...initialItems]);
+  const [items, setItems] = useState([]);
   let len = items.length;
   function handleAddItems(item){
     setItems(items=>[...items,item])
@@ -46,7 +42,7 @@ function Form({onAddItems}){
   function handleSubmit(e){
      e.preventDefault();
      if(!description)return;
-     const newItem = {description,quanity,packed:false,id:Date.now()}
+     let newItem = {description,quanity,packed:false,id:Date.now()}
      console.log(newItem,'<<newItem',"#handleSubmit")
      onAddItems(newItem);
      setDescription("")
@@ -85,7 +81,7 @@ function Item({item, onDeleteItem, onToggleItem}){
   return(
     <li>
       <input type='checkbox' value={item.packed} onChange={onToggleItem(item.id)}/>
-    <span style = {initialItems.packed ? {style:"line-through"}:{}}>
+    <span style = {item.packed ? {style:"line-through"}:{}}>
     {item.quanity}
     {item.description}
     </span>
