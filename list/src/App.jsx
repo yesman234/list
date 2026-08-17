@@ -81,7 +81,7 @@ function Item({item, onDeleteItem, onToggleItem}){
   return(
     <li>
       <input type='checkbox' value={item.packed} onChange={onToggleItem(item.id)}/>
-    <span style = {item.packed ? {style:"line-through"}:{}}>
+    <span style = {item.packed===true ? {style:"line-through"}:{}}>
     {item.quanity}
     {item.description}
     </span>
@@ -95,7 +95,7 @@ function Stats({items}){
   let perc = Math.round(filtered/len*100)
   return (
     <footer className="stats">
-      <em>Your have {len} items packed in your bag and packed {filtered} have {perc} to go.</em>
+    <em>{perc===100 ? "You did it!" : `You still need to pack ...${len}, and you already packed ${filtered} (${perc})%`}</em>
     </footer>
   )
 }
