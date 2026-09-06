@@ -77,17 +77,23 @@ function PackingList({items,onDeleteItem, onToggleItem}){
   </ul>
   </div>
 }
-function Item({item, onDeleteItem, onToggleItem}){
-  return(
+
+function Item({ item, onDeleteItem }) {
+  const [taken, setTaken] = useState(item.packed);
+ 
+  return (
     <li>
-      <input type='checkbox' value={item.packed} onChange={onToggleItem(item.id)}/>
-    <span style = {item.packed===true ? {style:"line-through"}:{}}>
-    {item.quanity}
-    {item.description}
-    </span>
-    <button onClick={()=>onDeleteItem(item.id)}>❌</button>
+      <input
+        onChange={(e) => setTaken(!taken)}
+        type="checkbox"
+        value={item.packed}
+      ></input>
+      <span style={taken ? { textDecoration: "line-through" } : {}}>
+        {item.quantity} {item.description}
+      </span>
+      <button onClick={() => onDeleteItem(item.id)}>❌</button>
     </li>
-  )
+  );
 }
 function Stats({items}){
   const len = items.length;
