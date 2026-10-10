@@ -101,7 +101,7 @@ function Stats({items}){
   let perc = Math.round(filtered/len*100)
   return (
     <footer className="stats">
-    <em>{perc===100 ? "You did it!" : `You still need to pack ...${len}, and you already packed ${filtered} (${perc})%`}</em>
+    <em>{perc===100 ? "You did it!" : `You still need to pack ...${len}, and you already packed ${filtered} (${!perc ? 0 : perc})%`}</em>
     </footer>
   )
 }
